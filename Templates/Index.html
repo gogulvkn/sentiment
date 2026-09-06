@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Classification Model</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; }
+        textarea { width: 100%; height: 100px; margin-bottom: 10px; padding: 10px; }
+        button { padding: 10px 20px; background-color: #007BFF; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        .result { margin-top: 20px; font-weight: bold; font-size: 1.2em; color: #28a745; }
+    </style>
+</head>
+<body>
+
+    <h2>Text Classification Dashboard</h2>
+    
+    <!-- Action points to the /predict route in app.py -->
+    <form action="/predict" method="POST">
+        <label for="user_text">Enter your text below:</label>
+        <textarea id="user_text" name="user_text" placeholder="Type something here..." required>{{ original_text }}</textarea>
+        <button type="submit">Analyze Text</button>
+    </form>
+
+    <!-- This section only displays if a prediction is passed back from Flask -->
+    {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+    {% endif %}
+
+</body>
+</html>
