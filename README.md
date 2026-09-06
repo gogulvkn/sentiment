@@ -197,7 +197,7 @@ Through this project, I learned how to:
 
 ## 👨‍💻 Author
 
-**Gogul**
+**kamatchinthan v**
 
 GitHub:
 https://github.com/gogulvkn
