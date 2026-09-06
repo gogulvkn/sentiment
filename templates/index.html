@@ -2,32 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Text Classification Model</title>
+    <title>Sentiment Analysis App</title>
     <style>
-        body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; }
-        textarea { width: 100%; height: 100px; margin-bottom: 10px; padding: 10px; }
-        button { padding: 10px 20px; background-color: #007BFF; color: white; border: none; cursor: pointer; }
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; text-align: center; background-color: #f4f4f9; }
+        textarea { width: 100%; height: 100px; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 16px; }
+        button { background-color: #007BFF; color: white; border: none; padding: 12px 20px; font-size: 16px; border-radius: 5px; cursor: pointer; width: 100%; }
         button:hover { background-color: #0056b3; }
-        .result { margin-top: 20px; font-weight: bold; font-size: 1.2em; color: #28a745; }
+        .result { margin-top: 25px; padding: 15px; border-radius: 5px; font-weight: bold; font-size: 18px; }
+        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
     </style>
 </head>
 <body>
 
-    <h2>Text Classification Dashboard</h2>
+    <h2>🎭 Sentiment Analysis Predictor</h2>
+    <p>Type your review below to test the deployed model:</p>
     
-    <!-- Action points to the /predict route in app.py -->
-    <form action="/predict" method="POST">
-        <label for="user_text">Enter your text below:</label>
-        <textarea id="user_text" name="user_text" placeholder="Type something here..." required>{{ original_text }}</textarea>
-        <button type="submit">Analyze Text</button>
+    <!-- Standard HTML Form Submission -->
+    <form method="POST" action="/">
+        <textarea name="text" placeholder="Type something here..." required>{{ input_text }}</textarea>
+        <button type="submit">Analyze Sentiment</button>
     </form>
 
-    <!-- This section only displays if a prediction is passed back from Flask -->
-    {% if prediction_text %}
-        <div class="result">
-            {{ prediction_text }}
-        </div>
+    <!-- Display Results dynamically if they exist -->
+    {% if prediction %}
+        <div class="result success">Prediction: {{ prediction }}</div>
+    {% endif %}
+
+    {% if error %}
+        <div class="result error">Error: {{ error }}</div>
     {% endif %}
 
 </body>
