@@ -35,6 +35,13 @@ def home():
                 
                 # Convert prediction format nicely
                 prediction_result = str(raw_pred).strip("['']")
+
+                if raw_pred == 1:
+                    prediction_result = "Positive"
+                else:
+                    prediction_result = "Negative"
+
+                
             else:
                 error_message = "Model files are missing on the server."
 
